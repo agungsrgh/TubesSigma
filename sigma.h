@@ -20,7 +20,7 @@ struct infoRumah{
     string namaPemilik;
     string statusKepemilikan;
     int luasTanah;
-    int pembayaranIuran[12];
+
 };
 
 struct elemenBlok{

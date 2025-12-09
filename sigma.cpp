@@ -23,11 +23,7 @@ adrRumah createElementRumah(string nomor, string pemilik, string status, int lua
     r->info.namaPemilik = pemilik;
     r->info.statusKepemilikan = status;
     r->info.luasTanah = luas;
-    for(int i = 0;i < 12; i++){
-        r->info.pembayaranIuran[i] = 0;
-        r->next = r->prev = nullptr;
-        return r;
-    }
+
 }
 
 bool isEmptyBlok(listBlok L){
