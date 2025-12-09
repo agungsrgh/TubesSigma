@@ -140,18 +140,21 @@ void hapusRumah(adrBlok &p, string nomor){
 
 }
 
-void editDataBlok(adrBlok &p)
+// Untuk hapus Blok dan Rumah
+void hapusBlok(listBlok &L, string nama);
+void hapusRumah(adrBlok &p, string nomor);
 
-void editDataRumah(adrRumah &r)
+// untuk Update Data Blok dan Rumah
+void updateDataBlok(adrBlok &p);
+void updateDataRumah(adrRumah &r);
 
-void PembayaranIuran(adrRumah &r, int bulan, int jumlah)
+// Sorting Blok berdasarkan jumlah rumah
+void sortBlokByJumlahRumah(listBlok &L, bool ascending);
 
-int hitungRumahKosong(adrBlok p)
+// Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
+void sortRumahByLuas(adrBlok blok, bool ascending);
+void sortRumahByPenghuni(adrBlok blok, bool ascending);
 
-int TotalLuasTanah(adrBlok p)
-
-adrRumah cariLuasTerbesar(listBlok L)
-
-adrRumah laporanTunggakanTerbesar(listBlok L)
-
-int TotalSemuaRumah(listBlok L)
+// Statistik
+int totalBlok(listBlok L);
+int totalRumah(listBlok L);
