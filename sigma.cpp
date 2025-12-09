@@ -23,7 +23,10 @@ adrRumah createElementRumah(string nomor, string pemilik, string status, int lua
     r->info.namaPemilik = pemilik;
     r->info.statusKepemilikan = status;
     r->info.luasTanah = luas;
+    r->next = nullptr;
+    r->prev = nullptr;
 
+    return r;
 }
 
 bool isEmptyBlok(listBlok L){
@@ -50,10 +53,10 @@ void tambahRumah(adrBlok &p, adrRumah q){
     }else{
         adrRumah temp = p->firstRumah;
         while(temp->next != nullptr){
-            temp = temp->next;
-            temp->next = q;
-            q->prev = temp;
+            temp = temp->next; 
         }
+        temp->next = q;
+        q->prev = temp;
     }
     p->info.jumlahRumah++;
 }
@@ -132,28 +135,58 @@ void displayDetailBlok(listBlok L, string nama){
     }
 }
 
+
+// Untuk hapus Blok dan Rumah
 void hapusBlok(listBlok &L, string nama){
 
+    adrBlok p = cariBlok(L, nama);
+
+    if(p == nullptr){
+        cout << "Blok tidak ditemukan!\n";
+        return;
+    }
+
+   
+    if(L.first == p && L.last == p){
+        L.first = L.last = nullptr;
+    }
+   
+    else if(p == L.first){
+        L.first = p->next;
+        L.first->prev = nullptr;
+    }
+    
+    else if(p == L.last){
+        L.last = p->prev;
+        L.last->next = nullptr;
+    }
+    
+    else{
+        p->prev->next = p->next;
+        p->next->prev = p->prev;
+    }
+
+    delete p;
+
+    cout << "Blok berhasil dihapus.\n";
 }
 
 void hapusRumah(adrBlok &p, string nomor){
+  adrBlok r  = cariRumah(p, nomor);  
+
 
 }
-
-// Untuk hapus Blok dan Rumah
-void hapusBlok(listBlok &L, string nama);
-void hapusRumah(adrBlok &p, string nomor);
 
 // untuk Update Data Blok dan Rumah
 void updateDataBlok(adrBlok &p);
 void updateDataRumah(adrRumah &r);
 
-// Sorting Blok berdasarkan jumlah rumah
-void sortBlokByJumlahRumah(listBlok &L, bool ascending);
-
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
-void sortRumahByLuas(adrBlok blok, bool ascending);
-void sortRumahByPenghuni(adrBlok blok, bool ascending);
+void sortRumahByLuasAsc(adrBlok blok);
+void sortRumahByLuasDesc(adrBlok blok);
+
+void so rtRumahByPenghuniAsc(adrBlok blok);
+void sortRumahByPenghuniDesc(adrBlok blok);
 
 // Statistik
 int totalBlok(listBlok L);
