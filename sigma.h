@@ -46,12 +46,10 @@ adrBlok createElementBlok(string nama, string tipe);
 adrRumah createElementRumah(string nomor, string pemilik, string status, int luas);
 bool isEmptyBlok(listBlok L);
 bool isEmptyRumah(adrBlok p);
-
 void tambahBlok(listBlok &L, adrBlok p);
 void tambahRumah(adrBlok &p, adrRumah q);
 adrBlok cariBlok(listBlok L, string namaBlok);
 adrRumah cariRumah(adrBlok p, string nomor);
-
 void display(listBlok L);
 void displayDetailBlok(listBlok L, string nama);
 
