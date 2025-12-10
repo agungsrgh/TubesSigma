@@ -93,11 +93,18 @@ void displaySemuaBlok(listBlok L){
 }
 
 void displayRumahDalamBlok(listBlok L, string nama){
+    adrBlok p = cariBlok(L,nama);
+    if (p == nullptr){
+        cout << "Block tidak ditemukan ! " << endl ;
+        return ;
+    }
+
     adrRumah q = p->firstRumah;
     if(q == nullptr){
-        cout << "Belum Ada Rumah" << endl;
-    }else{
-        while(q != nullptr){
+        cout << " Rumah tidak ditemukan " << endl;
+        return ;
+    }
+     while(q != nullptr){
             cout << "-" << q->info.nomorRumah;
             cout << "| Pemilik : " << q->info.namaPemilik;
             cout << "| Status : " << q->info.statusKepemilikan;
@@ -105,8 +112,11 @@ void displayRumahDalamBlok(listBlok L, string nama){
         }
         cout << endl;
         q = q->next;
-    }
 }
+    
+    
+       
+
 
 void displayDetailBlok(listBlok L, string nama){
     adrBlok p = cariBlok(L, nama);
