@@ -160,7 +160,7 @@ void hapusRumah(adrBlok &p, string nomor){
   adrBlok r  = cariRumah(p, nomor);  
 
 
-//void editDataRumah(adrRumah &r)
+void editDataRumah(adrRumah &r)
 
 // untuk Update Data Blok dan Rumah
 void updateDataBlok(adrBlok &p);
