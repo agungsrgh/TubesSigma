@@ -172,7 +172,29 @@ void hapusBlok(listBlok &L, string nama){
 }
 
 void hapusRumah(adrBlok &p, string nomor){
-  adrBlok r  = cariRumah(p, nomor);  
+  adrRumah r  = cariRumah(p, nomor);  
+
+  if (r == nullptr){
+    cout << " Rumah tidak ditemukan !";
+    return;
+  }
+
+  if ( r == p->firstRumah){
+    p->firstRumah = r->next;
+        if(r->next != nullptr){
+            r->next->prev = nullptr;
+        }
+  }else{
+    r->prev->next = r->next;
+    if(r->next != nullptr){
+        r->next->prev = r->prev;
+
+    }
+  }
+  delete r;
+  p->info.jumlahRumah--;
+
+  cout << "Rumah berhasil dihapus.\n";
 
 
 }
@@ -185,7 +207,7 @@ void updateDataRumah(adrRumah &r);
 void sortRumahByLuasAsc(adrBlok blok);
 void sortRumahByLuasDesc(adrBlok blok);
 
-void so rtRumahByPenghuniAsc(adrBlok blok);
+void sortRumahByPenghuniAsc(adrBlok blok);
 void sortRumahByPenghuniDesc(adrBlok blok);
 
 // Statistik
