@@ -82,6 +82,8 @@ adrRumah cariRumah(adrBlok p, string nomor){
     return nullptr;
 }
 
+
+// Untuk menampilkan Blok dan Rumah
 void displaySemuaBlok(listBlok L){
     adrBlok p = L.first;
     while(p != nullptr){
@@ -191,8 +193,39 @@ void hapusRumah(adrBlok &p, string nomor){
 
 }
 // untuk Update Data Blok dan Rumah
-void updateDataBlok(adrBlok &p);
-void updateDataRumah(adrRumah &r);
+void updateDataBlok(adrBlok &p){
+    cout << "Nama Blok Baru : ";
+    cin >> p->info.namaBlok;
+
+    cout << "Tipe Rumah : ";
+    cin >> p->info.jenisTipeRumah;
+}
+void updateDataRumah(adrRumah &r){
+    int pilih;
+    cout << "=== Update Data Rumah ===" << endl;
+    cout << "1. Ubah Nama Pemilik" << endl;
+    cout << "2. Ubah Status Rumah" << endl;
+    cout << "3. Ubah Luas Tanah" << endl;
+    cout << "4. Ubah Jumlah Penghuni" << endl;
+    cout << "5. Batal" << endl;
+    cin >> pilih;
+
+    if(pilih == 1){
+        cout << "Nama Pemilik Baru : ";
+        cin >> q->info.namaPemilik;
+    }else if(pilih == 2){
+        cout << "Status Rumah Baru : ";
+        cin >> q->info.statusKepemilikan;
+    }else if(pilih == 3){
+        cout << "Luas Baru : ";
+        cin >> q->info.luasTanah;
+    }else if(pilih == 4){
+        cout << "Jumlah Penghuni Baru : ";
+        cin >> q->info.jumlahPenghuni;
+    }else{
+        cout << "Update Dibatalkan" << endl;
+    }    
+}
 
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
 void sortRumahByLuasAsc(adrBlok blok);
