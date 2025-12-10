@@ -157,20 +157,71 @@ void hapusBlok(listBlok &L, string nama){
 }
 
 void hapusRumah(adrBlok &p, string nomor){
-  adrBlok r  = cariRumah(p, nomor);  
+  adrRumah r  = cariRumah(p, nomor);  
 
+  if (r == nullptr){
+    cout << " Rumah tidak ditemukan !";
+    return;
+  }
 
-void editDataRumah(adrRumah &r)
+  if ( r == p->firstRumah){
+    p->firstRumah = r->next;
+        if(r->next != nullptr){
+            r->next->prev = nullptr;
+        }
+  }else{
+    r->prev->next = r->next;
+    if(r->next != nullptr){
+        r->next->prev = r->prev;
 
+    }
+  }
+  delete r;
+  p->info.jumlahRumah--;
+
+  cout << "Rumah berhasil dihapus.\n";
+
+}
 // untuk Update Data Blok dan Rumah
-void updateDataBlok(adrBlok &p);
-void updateDataRumah(adrRumah &r);
+void updateDataBlok(adrBlok &p){
+    cout << "Nama Blok Baru : ";
+    cin >> p->info.namaBlok;
+
+    cout << "Tipe Rumah : ";
+    cin >> p->info.jenisTipeRumah;
+}
+void updateDataRumah(adrRumah &r){
+    int pilih;
+    cout << "=== Update Data Rumah ===" << endl;
+    cout << "1. Ubah Nama Pemilik" << endl;
+    cout << "2. Ubah Status Rumah" << endl;
+    cout << "3. Ubah Luas Tanah" << endl;
+    cout << "4. Ubah Jumlah Penghuni" << endl;
+    cout << "5. Batal" << endl;
+    cin >> pilih;
+
+    if(pilih == 1){
+        cout << "Nama Pemilik Baru : ";
+        cin >> q->info.namaPemilik;
+    }else if(pilih == 2){
+        cout << "Status Rumah Baru : ";
+        cin >> q->info.statusKepemilikan;
+    }else if(pilih == 3){
+        cout << "Luas Baru : ";
+        cin >> q->info.luasTanah;
+    }else if(pilih == 4){
+        cout << "Jumlah Penghuni Baru : ";
+        cin >> q->info.jumlahPenghuni;
+    }else{
+        cout << "Update Dibatalkan" << endl;
+    }    
+}
 
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
 void sortRumahByLuasAsc(adrBlok blok);
 void sortRumahByLuasDesc(adrBlok blok);
 
-void so rtRumahByPenghuniAsc(adrBlok blok);
+void sortRumahByPenghuniAsc(adrBlok blok);
 void sortRumahByPenghuniDesc(adrBlok blok);
 
 // Statistik
