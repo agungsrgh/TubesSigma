@@ -114,10 +114,6 @@ void displayRumahDalamBlok(listBlok L, string nama){
         q = q->next;
 }
     
-    
-       
-
-
 void displayDetailBlok(listBlok L, string nama){
     adrBlok p = cariBlok(L, nama);
     if(p == nullptr){
@@ -160,8 +156,9 @@ void hapusBlok(listBlok &L, string nama){
         p->prev->next = p->next;
         p->next->prev = p->prev;
     }
-
-    delete p;
+    p->prev = nullptr;
+    p->next = nullptr;
+   
 
     cout << "Blok berhasil dihapus.\n";
 }
@@ -186,9 +183,10 @@ void hapusRumah(adrBlok &p, string nomor){
 
     }
   }
-  delete r;
+  r->next = nullptr;
+  r->prev = nullptr;
+  
   p->info.jumlahRumah--;
-
   cout << "Rumah berhasil dihapus.\n";
 
 }
