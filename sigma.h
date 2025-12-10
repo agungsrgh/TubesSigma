@@ -20,7 +20,7 @@ struct infoRumah{
     string namaPemilik;
     string statusKepemilikan;
     int luasTanah;
-    int pembayaranIuran[12];
+    int jumlahPenghuni;
 };
 
 struct elemenBlok{
@@ -51,20 +51,17 @@ void tambahBlok(listBlok &L, adrBlok p);
 void tambahRumah(adrBlok &p, adrRumah q);
 adrBlok cariBlok(listBlok L, string namaBlok);
 adrRumah cariRumah(adrBlok p, string nomor);
-void display(listBlok L);
+void displayRumah(listBlok L);
 void displayDetailBlok(listBlok L, string nama);
 
-void hapusBlok(listBlok &L, string nama);
-void hapusRumah(adrBlok &p, string nomor);
-void editDataBlok(adrBlok &p);
-void editDataRumah(adrRumah &r);
+//void hapusBlok(listBlok &L, string nama);
+//void hapusRumah(adrBlok &p, string nomor);
+//void editDataBlok(adrBlok &p);
+//void editDataRumah(adrRumah &r);
 
-void PembayaranIuran(adrRumah &r, int bulan, int jumlah);
-
-int hitungRumahKosong(adrBlok p);
-int TotalLuasTanah(adrBlok p);
-adrRumah cariLuasTerbesar(listBlok L);
-adrRumah laporanTunggakanTerbesar(listBlok L);
-int TotalSemuaRumah(listBlok L);
+//int hitungRumahKosong(adrBlok p);
+//int TotalLuasTanah(adrBlok p);
+//adrRumah cariLuasTerbesar(listBlok L);
+//int TotalSemuaRumah(listBlok L);
 
 #endif // SIGMA_H_INCLUDED

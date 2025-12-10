@@ -23,11 +23,9 @@ adrRumah createElementRumah(string nomor, string pemilik, string status, int lua
     r->info.namaPemilik = pemilik;
     r->info.statusKepemilikan = status;
     r->info.luasTanah = luas;
-    for(int i = 0;i < 12; i++){
-        r->info.pembayaranIuran[i] = 0;
-        r->next = r->prev = nullptr;
-        return r;
-    }
+    r->next = nullptr;
+    r->prev = nullptr;
+    return r;
 }
 
 bool isEmptyBlok(listBlok L){
@@ -84,13 +82,12 @@ adrRumah cariRumah(adrBlok p, string nomor){
     return nullptr;
 }
 
-void display(listBlok L){
+void displaySemuaBlok(listBlok L){
     adrBlok p = L.first;
     while(p != nullptr){
         cout << "====" << p->info.namaBlok << "====" << endl;
         cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
         cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
-        cout << "Daftar Rumah : " << endl;
 
         adrRumah q = p->firstRumah;
         if(q == nullptr){
@@ -136,26 +133,18 @@ void displayDetailBlok(listBlok L, string nama){
     }
 }
 
-void hapusBlok(listBlok &L, string nama){
+//void hapusBlok(listBlok &L, string nama)
 
-}
+//void hapusRumah(adrBlok &p, string nomor)
 
-void hapusRumah(adrBlok &p, string nomor){
+//void editDataBlok(adrBlok &p)
 
-}
+//void editDataRumah(adrRumah &r)
 
-void editDataBlok(adrBlok &p)
+//int hitungRumahKosong(adrBlok p)
 
-void editDataRumah(adrRumah &r)
+//int TotalLuasTanah(adrBlok p)
 
-void PembayaranIuran(adrRumah &r, int bulan, int jumlah)
+//adrRumah cariLuasTerbesar(listBlok L)
 
-int hitungRumahKosong(adrBlok p)
-
-int TotalLuasTanah(adrBlok p)
-
-adrRumah cariLuasTerbesar(listBlok L)
-
-adrRumah laporanTunggakanTerbesar(listBlok L)
-
-int TotalSemuaRumah(listBlok L)
+//int TotalSemuaRumah(listBlok L)
