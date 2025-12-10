@@ -82,6 +82,8 @@ adrRumah cariRumah(adrBlok p, string nomor){
     return nullptr;
 }
 
+
+// Untuk menampilkan Blok dan Rumah
 void displaySemuaBlok(listBlok L){
     adrBlok p = L.first;
     while(p != nullptr){
