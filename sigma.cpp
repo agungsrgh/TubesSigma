@@ -25,7 +25,6 @@ adrRumah createElementRumah(string nomor, string pemilik, string status, int lua
     r->info.luasTanah = luas;
     r->next = nullptr;
     r->prev = nullptr;
-
     return r;
 }
 
@@ -83,43 +82,17 @@ adrRumah cariRumah(adrBlok p, string nomor){
     return nullptr;
 }
 
-void display(listBlok L){
+void displaySemuaBlok(listBlok L){
     adrBlok p = L.first;
     while(p != nullptr){
         cout << "====" << p->info.namaBlok << "====" << endl;
         cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
         cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
-        cout << "Daftar Rumah : " << endl;
-
-        adrRumah q = p->firstRumah;
-        if(q == nullptr){
-            cout << "Kosong";
-        }else{
-            while( q != nullptr){
-                cout << q->info.nomorRumah;
-                if(q->next != nullptr){
-                    cout << ", ";
-                }
-                q = q->next;
-            }
-            cout << ", ";
-        }
-        cout << endl;
         p = p->next;
     }
 }
 
-void displayDetailBlok(listBlok L, string nama){
-    adrBlok p = cariBlok(L, nama);
-    if(p == nullptr){
-        cout << "Blok Tidak Ditemukan!" << endl;
-    }
-
-    cout << "====" << p->info.namaBlok << "====" << endl;
-    cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
-    cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
-    cout << "Daftar Rumah : " << endl;
-
+void displayRumahDalamBlok(listBlok L, string nama){
     adrRumah q = p->firstRumah;
     if(q == nullptr){
         cout << "Belum Ada Rumah" << endl;
@@ -135,6 +108,18 @@ void displayDetailBlok(listBlok L, string nama){
     }
 }
 
+void displayDetailBlok(listBlok L, string nama){
+    adrBlok p = cariBlok(L, nama);
+    if(p == nullptr){
+        cout << "Blok Tidak Ditemukan!" << endl;
+        return; 
+    }
+
+    cout << "=== DETAIL " << p->info.namaBlok << "===" << endl;
+    cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
+    cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
+    displayRumahDalamBlok(p);
+}
 
 // Untuk hapus Blok dan Rumah
 void hapusBlok(listBlok &L, string nama){
@@ -196,9 +181,7 @@ void hapusRumah(adrBlok &p, string nomor){
 
   cout << "Rumah berhasil dihapus.\n";
 
-
 }
-
 // untuk Update Data Blok dan Rumah
 void updateDataBlok(adrBlok &p);
 void updateDataRumah(adrRumah &r);
