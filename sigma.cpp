@@ -235,6 +235,10 @@ void updateDataRumah(adrRumah &r){
     }    
 }
 
+// Sorting Blok berdasarkan jumlah rumah
+void sortBlokByJumlahRumahAsc(listBlok &L, bool ascending);
+void sortBlokByJumlahRumahDesc(listBlok &L, bool descending);
+
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
 void sortRumahByLuasAsc(adrBlok blok);
 void sortRumahByLuasDesc(adrBlok blok);
