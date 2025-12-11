@@ -58,7 +58,7 @@ adrRumah cariRumah(adrBlok p, string nomor);
 
 // untuk menampilkan Detail Blok atau Rumah
 void displaySemuaBlok(listBlok L);
-void displayRumahDalamBlok(adrBlok p);
+void displayRumahDalamBlok(adrBlok p, string nama);
 void displayDetailBlok(listBlok L, string nama);
 
 // Untuk hapus Blok dan Rumah
@@ -70,16 +70,15 @@ void updateDataBlok(adrBlok &p);
 void updateDataRumah(adrRumah &r);
 
 // Sorting Blok berdasarkan jumlah rumah
-void sortBlokByJumlahRumahAsc(listBlok &L);
-void sortBlokByJumlahRumahDesc(listBlok &L);
-
+void sortBlokByJumlahRumahAsc(listBlok &L, bool ascending);
+void sortBlokByJumlahRumahDesc(listBlok &L, bool descending);
 
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
 void sortRumahByLuasAsc(adrBlok blok);
 void sortRumahByLuasDesc(adrBlok blok);
 
-void sortRumahByPenghuniAsc(adrBlok blok, bool ascending);
-void sortRumahByPenghuniDesc(adrBlok blok, bool ascending);
+void sortRumahByPenghuniAsc(adrBlok blok);
+void sortRumahByPenghuniDesc(adrBlok blok);
 
 
 // Statistik
