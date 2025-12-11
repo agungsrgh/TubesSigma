@@ -233,9 +233,60 @@ void updateDataRumah(adrRumah &r){
 void sortRumahByLuasAsc(adrBlok blok);
 void sortRumahByLuasDesc(adrBlok blok);
 
-void sortRumahByPenghuniAsc(adrBlok blok);
-void sortRumahByPenghuniDesc(adrBlok blok);
+void sortRumahByPenghuniAsc(adrBlok blok){
+    adrRumah i = blok->firstRumah;
+    while(i != nullptr){
+        adrRumah target = i;
+        adrRumah j =i->next;
+
+        while(j != nullptr){
+            if(j->info.jumlahPenghuni < target->info.jumlahPenghuni){
+                target = j;
+            }
+            j = j->next;
+        }
+        infoRumah temp = i->info;
+        i->info = target->info;
+        target->info = temp;
+
+        i = i->next;
+    }
+}
+void sortRumahByPenghuniDesc(adrBlok blok){
+    adrRumah i = blok->firstRumah;
+    while(i != nullptr){
+        adrRumah target = i;
+        adrRumah j =i->next;
+
+        while(j != nullptr){
+            if(j->info.jumlahPenghuni > target->info.jumlahPenghuni){
+                target = j;
+            }
+            j = j->next;
+        }
+        infoRumah temp = i->info;
+        i->info = target->info;
+        target->info = temp;
+
+        i = i->next;
+}
 
 // Statistik
-int totalBlok(listBlok L);
-int totalRumah(listBlok L);
+int totalBlok(listBlok L){
+    int TB = 0;
+    adrBlok p = L.first;
+    while(p){
+        TB++;
+        p = p->next;
+    }
+    return TB;
+}
+int totalRumah(listBlok L){
+    int TR = 0;
+    adrBlok p = L.first;
+    while(p){
+        TR += p->info.jumlahRumah;
+        p = p->next;
+    }
+    return TR;
+}
