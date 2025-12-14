@@ -98,7 +98,8 @@ void displayRumahDalamBlok(listBlok L, string nama){
     adrBlok p = cariBlok(L,nama);
     if (p == nullptr){
         cout << "Block tidak ditemukan ! " << endl ;
-        return ;
+        return;
+        
     }
 
     adrRumah q = p->firstRumah;
@@ -111,9 +112,9 @@ void displayRumahDalamBlok(listBlok L, string nama){
             cout << "| Pemilik : " << q->info.namaPemilik;
             cout << "| Status : " << q->info.statusKepemilikan;
             cout << "| Luas : " << q->info.luasTanah << "m2" << endl;
+            q = q->next;
         }
         cout << endl;
-        q = q->next;
 }
     
 void displayDetailBlok(listBlok L, string nama){
@@ -126,7 +127,7 @@ void displayDetailBlok(listBlok L, string nama){
     cout << "=== DETAIL " << p->info.namaBlok << "===" << endl;
     cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
     cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
-    displayRumahDalamBlok(p);
+    displayRumahDalamBlok(L,nama);
 }
 
 // Untuk hapus Blok dan Rumah
@@ -171,6 +172,7 @@ void hapusRumah(adrBlok &p, string nomor){
   if (r == nullptr){
     cout << " Rumah tidak ditemukan !";
     return;
+
   }
 
   if ( r == p->firstRumah){
@@ -212,16 +214,16 @@ void updateDataRumah(adrRumah &r){
 
     if(pilih == 1){
         cout << "Nama Pemilik Baru : ";
-        cin >> q->info.namaPemilik;
+        cin >> r->info.namaPemilik;
     }else if(pilih == 2){
         cout << "Status Rumah Baru : ";
-        cin >> q->info.statusKepemilikan;
+        cin >> r->info.statusKepemilikan;
     }else if(pilih == 3){
         cout << "Luas Baru : ";
-        cin >> q->info.luasTanah;
+        cin >> r->info.luasTanah;
     }else if(pilih == 4){
         cout << "Jumlah Penghuni Baru : ";
-        cin >> q->info.jumlahPenghuni;
+        cin >> r->info.jumlahPenghuni;
     }else{
         cout << "Update Dibatalkan" << endl;
     }    
