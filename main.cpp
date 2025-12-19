@@ -6,207 +6,177 @@ int main(){
     listBlok L;
     createListBlok(L);
 
-    int pilihan;
-    string namaBlok, tipe;
-    string nomor, pemilik, status;
-    int luas, penghuni;
-
+    int pilih;
     do{
         tampilkanList();
-        cin >> pilihan;
-        cout << endl;
+        cin >> pilih;
 
-        switch(pilihan){
-        case 1:{
-            cout << "=== INPUT BLOCK DATA ===\n";
-            cout << "Nama Blok      : ";
-            cin >> namaBlok;
-            cout << "Tipe Rumah     : ";
+        if(pilih == 1){
+            string nama, tipe;
+            cout << "Nama Blok (tanpa spasi): ";
+            cin >> nama;
+            cout << "Jenis Tipe Rumah: ";
             cin >> tipe;
 
-            adrBlok p = createElementBlok(namaBlok, tipe);
-            tambahBlok(L, p);
+            if(cariBlok(L, nama) != nullptr){
+                cout << "Blok sudah ada!\n";
+            }else{
+                adrBlok p = createElementBlok(nama, tipe);
+                tambahBlok(L, p);
+                cout << "Blok berhasil ditambahkan.\n";
+            }
 
-            cout << "Blok berhasil ditambahkan!\n\n";
-            break;
-        }
+        }else if(pilih == 2){
+            string namaBlok, nomor, pemilik, status;
+            int luas, penghuni;
 
-        case 2:{
-            cout << "=== INPUT HOUSE DATA ===\n";
-            cout << "Nama Blok      : ";
+            cout << "Nama Blok: ";
             cin >> namaBlok;
 
             adrBlok p = cariBlok(L, namaBlok);
             if(p == nullptr){
-                cout << "Blok tidak ditemukan!\n\n";
-                break;
+                cout << "Blok tidak ditemukan!\n";
+            }else{
+                cout << "Nomor Rumah: ";
+                cin >> nomor;
+                cout << "Nama Pemilik: ";
+                cin >> pemilik;
+                cout << "Status (Lunas/KPR): ";
+                cin >> status;
+                cout << "Luas Tanah: ";
+                cin >> luas;
+                cout << "Jumlah Penghuni: ";
+                cin >> penghuni;
+
+                adrRumah r = createElementRumah(nomor, pemilik, status, luas, penghuni);
+                tambahRumah(p, r);
+                cout << "Rumah berhasil ditambahkan.\n";
             }
 
-            cout << "Nomor Rumah    : ";
-            cin >> nomor;
-            cout << "Nama Pemilik   : ";
-            cin >> pemilik;
-            cout << "Status Rumah   : ";
-            cin >> status;
-            cout << "Luas Tanah     : ";
-            cin >> luas;
-            cout << "Jumlah Penghuni: ";
-            cin >> penghuni;
-
-            adrRumah r = createElementRumah(nomor, pemilik, status, luas, penghuni);
-            tambahRumah(p, r);
-
-            cout << "Rumah berhasil ditambahkan!\n\n";
-            break;
-        }
-
-        case 3:
-            cout << "=== DAFTAR BLOK ===\n";
+        }else if(pilih == 3){
             displaySemuaBlok(L);
-            cout << endl;
-            break;
 
-        case 4:
-            cout << "Nama Blok : ";
-            cin >> namaBlok;
-            displayRumahDalamBlok(L, namaBlok);
-            cout << endl;
-            break;
+        }else if(pilih == 4){
+            string nama;
+            cout << "Nama Blok: ";
+            cin >> nama;
+            adrBlok p = cariBlok(L, nama);
+            displayRumahDalamBlok(p);
 
-        case 5:
-            cout << "Nama Blok : ";
-            cin >> namaBlok;
-            hapusBlok(L, namaBlok);
-            cout << endl;
-            break;
+        }else if(pilih == 5){
+            string nama;
+            cout << "Nama Blok: ";
+            cin >> nama;
+            hapusBlok(L, nama);
 
-        case 6:{
-            cout << "Nama Blok : ";
+        }else if(pilih == 6){
+            string namaBlok, nomor;
+            cout << "Nama Blok: ";
             cin >> namaBlok;
             adrBlok p = cariBlok(L, namaBlok);
+
             if(p == nullptr){
-                cout << "Blok tidak ditemukan!\n\n";
-                break;
+                cout << "Blok tidak ditemukan!\n";
+            }else{
+                cout << "Nomor Rumah: ";
+                cin >> nomor;
+                hapusRumah(p, nomor);
             }
-            cout << "Nomor Rumah : ";
-            cin >> nomor;
-            hapusRumah(p, nomor);
-            cout << endl;
-            break;
-        }
 
-        case 7:{
-            cout << "Nama Blok : ";
-            cin >> namaBlok;
-            adrBlok p = cariBlok(L, namaBlok);
-            if(p != nullptr){
+        }else if(pilih == 7){
+            string nama;
+            cout << "Nama Blok: ";
+            cin >> nama;
+            adrBlok p = cariBlok(L, nama);
+            if(p == nullptr){
+                cout << "Blok tidak ditemukan!\n";
+            }else{
                 updateDataBlok(p);
-                cout << "Data blok diperbarui!\n\n";
-            }else{
-                cout << "Blok tidak ditemukan!\n\n";
             }
-            break;
-        }
 
-        case 8:{
-            cout << "Nama Blok : ";
+        }else if(pilih == 8){
+            string namaBlok, nomor;
+            cout << "Nama Blok: ";
             cin >> namaBlok;
             adrBlok p = cariBlok(L, namaBlok);
+
             if(p == nullptr){
-                cout << "Blok tidak ditemukan!\n\n";
-                break;
-            }
-            cout << "Nomor Rumah : ";
-            cin >> nomor;
-            adrRumah r = cariRumah(p, nomor);
-            if(r != nullptr){
-                updateDataRumah(r);
+                cout << "Blok tidak ditemukan!\n";
             }else{
-                cout << "Rumah tidak ditemukan!\n";
-            }
-            cout << endl;
-            break;
-        }
-
-        case 11:{
-            int pilih;
-            cout << "=== SORT BLOK (Jumlah Rumah) ===\n";
-            cout << "1. Ascending\n";
-            cout << "2. Descending\n";
-            cout << "Pilih : ";
-            cin >> pilih;
-
-            if(pilih == 1)
-                sortBlokByJumlahRumahAsc(L);
-            else if(pilih == 2)
-                sortBlokByJumlahRumahDesc(L);
-            else{
-                cout << "Pilihan tidak valid!\n\n";
-                break;
+                cout << "Nomor Rumah: ";
+                cin >> nomor;
+                adrRumah r = cariRumah(p, nomor);
+                if(r == nullptr){
+                    cout << "Rumah tidak ditemukan!\n";
+                }else{
+                    updateDataRumah(r);
+                }
             }
 
-            cout << "\nHASIL SORTING BLOK:\n";
-            displaySemuaBlok(L);
-            cout << endl;
-            break;
-        }
+        }else if(pilih == 9){
+            string nama;
+            cout << "Nama Blok: ";
+            cin >> nama;
+            displayDetailBlok(L, nama);
 
-        case 12:{
-            int data, arah;
-            cout << "Nama Blok : ";
+        }else if(pilih == 10){
+            string namaBlok, nomor;
+            cout << "Nama Blok: ";
             cin >> namaBlok;
             adrBlok p = cariBlok(L, namaBlok);
+
             if(p == nullptr){
-                cout << "Blok tidak ditemukan!\n\n";
-                break;
+                cout << "Blok tidak ditemukan!\n";
+            }else{
+                cout << "Nomor Rumah: ";
+                cin >> nomor;
+                adrRumah r = cariRumah(p, nomor);
+                if(r == nullptr){
+                    cout << "Rumah tidak ditemukan!\n";
+                }else{
+                    cout << "Pemilik: " << r->info.namaPemilik << endl;
+                    cout << "Status: " << r->info.statusKepemilikan << endl;
+                    cout << "Luas: " << r->info.luasTanah << endl;
+                    cout << "Penghuni: " << r->info.jumlahPenghuni << endl;
+                }
             }
 
-            cout << "\n1. Luas Tanah\n";
-            cout << "2. Jumlah Penghuni\n";
-            cout << "Pilih : ";
-            cin >> data;
+        }else if(pilih == 11){
+            int s;
+            cout << "1. Ascending\n2. Descending\nPilih: ";
+            cin >> s;
+            if(s == 1) sortBlokByJumlahRumahAsc(L);
+            else sortBlokByJumlahRumahDesc(L);
 
-            cout << "\n1. Ascending\n";
-            cout << "2. Descending\n";
-            cout << "Pilih : ";
-            cin >> arah;
+        }else if(pilih == 12){
+            string nama;
+            int s;
+            cout << "Nama Blok: ";
+            cin >> nama;
+            adrBlok p = cariBlok(L, nama);
 
-            if(data == 1){
-                if(arah == 1) sortRumahByLuasAsc(p);
-                else sortRumahByLuasDesc(p);
-            }
-            else if(data == 2){
-                if(arah == 1) sortRumahByPenghuniAsc(p);
-                else sortRumahByPenghuniDesc(p);
-            }
-            else{
-                cout << "Pilihan tidak valid!\n\n";
-                break;
+            if(p == nullptr){
+                cout << "Blok tidak ditemukan!\n";
+            }else{
+                cout << "1. Luas Asc\n2. Luas Desc\n3. Penghuni Asc\n4. Penghuni Desc\nPilih: ";
+                cin >> s;
+
+                if(s == 1) sortRumahByLuasAsc(p);
+                else if(s == 2) sortRumahByLuasDesc(p);
+                else if(s == 3) sortRumahByPenghuniAsc(p);
+                else if(s == 4) sortRumahByPenghuniDesc(p);
             }
 
-            cout << "\nHASIL SORTING RUMAH:\n";
-            displayRumahDalamBlok(L, namaBlok);
-            cout << endl;
-            break;
+        }else if(pilih == 13){
+            cout << "Total Blok: " << totalBlok(L) << endl;
+
+        }else if(pilih == 14){
+            cout << "Total Rumah: " << totalRumah(L) << endl;
+
         }
 
-        case 13:
-            cout << "Total Blok  : " << totalBlok(L) << endl << endl;
-            break;
+    }while(pilih != 15);
 
-        case 14:
-            cout << "Total Rumah: " << totalRumah(L) << endl << endl;
-            break;
-
-        case 15:
-            goodbyeThankYou();
-            break;
-
-        default:
-            cout << "Pilihan tidak valid!\n\n";
-        }
-
-    }while(pilihan != 15);
-
+    goodbyeThankYou();
     return 0;
 }
