@@ -96,7 +96,7 @@ void displaySemuaBlok(listBlok L){
     }
 }
 
-void displayRumahDalamBlok(listBlok L, string nama){
+void displayRumahDalamBlok(adrBlok p, string nama){
     adrBlok p = cariBlok(L,nama);
     if (p == nullptr){
         cout << "Block tidak ditemukan ! " << endl ;
@@ -129,7 +129,7 @@ void displayDetailBlok(listBlok L, string nama){
     cout << "=== DETAIL " << p->info.namaBlok << "===" << endl;
     cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
     cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
-    displayRumahDalamBlok(L,nama);
+    displayRumahDalamBlok(p, nama);
 }
 
 // Untuk hapus Blok dan Rumah
@@ -404,23 +404,23 @@ void tampilkanList(){
         cout << "=====================================\n";
         cout << "      HOUSING DATA MANAGEMENT SYSTEM \n";
         cout << "=====================================\n";
-        cout << "1.  Input Block Data\n";
-        cout << "2.  Input House Data\n";
-        cout << "3.  View Block List\n";
-        cout << "4.  View House List\n";
-        cout << "5.  Delete Block Data\n";
-        cout << "6.  Delete House Data\n";
-        cout << "7.  Update Block Data\n";
-        cout << "8.  Update House Data\n";
-        cout << "9.  Search Block\n";
-        cout << "10. Search House\n";
-        cout << "11. Sort Blocks\n";
-        cout << "12. Sort Houses by Block\n";
-        cout << "13. Total Blocks\n";
-        cout << "14. Total Houses\n";
+        cout << "1.  Input Data Blok\n";
+        cout << "2.  Input Data Rumah\n";
+        cout << "3.  Lihat List Blok\n";
+        cout << "4.  Lihat List Rumah\n";
+        cout << "5.  Delete Data Blok\n";
+        cout << "6.  Delete Data Rumah\n";
+        cout << "7.  Update Data Blok\n";
+        cout << "8.  Update Data Rumah\n";
+        cout << "9.  Search Blok\n";
+        cout << "10. Search Rumah\n";
+        cout << "11. Sort Blok\n";
+        cout << "12. Sort Rumah by Blok\n";
+        cout << "13. Total Blok\n";
+        cout << "14. Total Rumah\n";
         cout << "15. Exit\n";
         cout << "=====================================\n";
-        cout << "Enter your choice: ";
+        cout << "Masukkan Pilihan : ";
 }
 
 void goodbyeThankYou(){
