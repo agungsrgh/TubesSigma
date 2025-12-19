@@ -17,8 +17,6 @@ int main(){
         cout << endl;
 
         switch(pilihan){
-
-        // ================= INPUT BLOK =================
         case 1:{
             cout << "=== INPUT BLOCK DATA ===\n";
             cout << "Nama Blok      : ";
@@ -33,7 +31,6 @@ int main(){
             break;
         }
 
-        // ================= INPUT RUMAH =================
         case 2:{
             cout << "=== INPUT HOUSE DATA ===\n";
             cout << "Nama Blok      : ";
@@ -63,14 +60,12 @@ int main(){
             break;
         }
 
-        // ================= VIEW BLOK =================
         case 3:
             cout << "=== DAFTAR BLOK ===\n";
             displaySemuaBlok(L);
             cout << endl;
             break;
 
-        // ================= VIEW RUMAH =================
         case 4:
             cout << "Nama Blok : ";
             cin >> namaBlok;
@@ -78,7 +73,6 @@ int main(){
             cout << endl;
             break;
 
-        // ================= DELETE BLOK =================
         case 5:
             cout << "Nama Blok : ";
             cin >> namaBlok;
@@ -86,7 +80,6 @@ int main(){
             cout << endl;
             break;
 
-        // ================= DELETE RUMAH =================
         case 6:{
             cout << "Nama Blok : ";
             cin >> namaBlok;
@@ -102,7 +95,6 @@ int main(){
             break;
         }
 
-        // ================= UPDATE BLOK =================
         case 7:{
             cout << "Nama Blok : ";
             cin >> namaBlok;
@@ -116,7 +108,6 @@ int main(){
             break;
         }
 
-        // ================= UPDATE RUMAH =================
         case 8:{
             cout << "Nama Blok : ";
             cin >> namaBlok;
@@ -137,7 +128,6 @@ int main(){
             break;
         }
 
-        // ================= SORT BLOK =================
         case 11:{
             int pilih;
             cout << "=== SORT BLOK (Jumlah Rumah) ===\n";
@@ -161,7 +151,6 @@ int main(){
             break;
         }
 
-        // ================= SORT RUMAH =================
         case 12:{
             int data, arah;
             cout << "Nama Blok : ";
@@ -201,7 +190,6 @@ int main(){
             break;
         }
 
-        // ================= STATISTIK =================
         case 13:
             cout << "Total Blok  : " << totalBlok(L) << endl << endl;
             break;
