@@ -90,7 +90,7 @@ void tampilkanList();
 void goodbyeThankYou();
 
 // main
-void mainProgram()
+
 
 
 #endif // SIGMA_H_INCLUDED
