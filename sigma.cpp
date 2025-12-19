@@ -163,6 +163,7 @@ void hapusBlok(listBlok &L, string nama){
     p->prev = nullptr;
     p->next = nullptr;
    
+    delete p;
 
     cout << "Blok berhasil dihapus.\n";
 }
@@ -192,6 +193,8 @@ void hapusRumah(adrBlok &p, string nomor){
   r->prev = nullptr;
   
   p->info.jumlahRumah--;
+  delete r;
+  
   cout << "Rumah berhasil dihapus.\n";
 }
 
@@ -233,12 +236,107 @@ void updateDataRumah(adrRumah &r){
 }
 
 // Sorting Blok berdasarkan jumlah rumah
-void sortBlokByJumlahRumahAsc(listBlok &L, bool ascending);
-void sortBlokByJumlahRumahDesc(listBlok &L, bool descending);
+void sortBlokByJumlahRumahAsc(listBlok &L){
+   if (L.first == nullptr){
+       cout << "Block kosong !" << endl;
+       return;
+   }
+    adrBlok p = L.first;
+    while (p != nullptr) {
+        adrBlok target = p;
+        adrBlok q = p->next;
+        while (q != nullptr) {
+            if (q->info.jumlahRumah < target->info.jumlahRumah){
+                target = q; 
+            } 
+            q = q->next;
+        }
+        if (target != p) {
+            
+            infoBlok tmpInfo = p->info;
+            p->info = target->info;
+            target->info = tmpInfo;
+           
+            adrRumah tmpFirst = p->firstRumah;
+            p->firstRumah = target->firstRumah;
+            target->firstRumah = tmpFirst;
+        }
+        p = p->next;
+    }
+
+}
+void sortBlokByJumlahRumahDesc(listBlok &L){
+    if (L.first == nullptr){
+        cout << "Block kosong !" << endl;
+        return;
+    }
+    
+    adrBlok p = L.first;
+    while (p != nullptr) {
+        adrBlok target = p;
+        adrBlok q = p->next;
+        while (q != nullptr) {
+            if (q->info.jumlahRumah > target->info.jumlahRumah) target = q;
+            q = q->next;
+        }
+        if (target != p) {
+            
+            infoBlok tmpInfo = p->info;
+            p->info = target->info;
+            target->info = tmpInfo;
+            
+            adrRumah tmpFirst = p->firstRumah;
+            p->firstRumah = target->firstRumah;
+            target->firstRumah = tmpFirst;
+        }
+        p = p->next;
+    }
+    
+}
 
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
-void sortRumahByLuasAsc(adrBlok blok);
-void sortRumahByLuasDesc(adrBlok blok);
+void sortRumahByLuasAsc(adrBlok blok){
+    if (blok == nullptr || blok->firstRumah == nullptr){
+        cout << "Blok atau Rumah kosong !" << endl;
+        return;
+    }
+    adrRumah p = blok->firstRumah;
+    while (p != nullptr) {
+        adrRumah target = p;
+        adrRumah q = p->next;
+        while (q != nullptr) {
+            if (q->info.luasTanah < target->info.luasTanah) target = q;
+            q = q->next;
+        }
+        if (target != p) {
+            infoRumah tmp = p->info;
+            p->info = target->info;
+            target->info = tmp;
+        }
+        p = p->next;
+    }
+}
+void sortRumahByLuasDesc(adrBlok blok){
+    if (blok == nullptr || blok->firstRumah == nullptr){
+        cout << "Blok atau Rumah kosong !" << endl;
+        return;
+    } 
+    adrRumah p = blok->firstRumah;
+    while (p != nullptr) {
+        adrRumah target = p;
+        adrRumah q = p->next;
+        while (q != nullptr) {
+            if (q->info.luasTanah > target->info.luasTanah) target = q;
+            q = q->next;
+        }
+        if (target != p) {
+            infoRumah tmp = p->info;
+            p->info = target->info;
+            target->info = tmp;
+        }
+        p = p->next;
+    }
+}
 
 void sortRumahByPenghuniAsc(adrBlok blok){
     adrRumah i = blok->firstRumah;
@@ -300,3 +398,38 @@ int totalRumah(listBlok L){
     }
     return TR;
 }
+
+//UI
+void tampilkanList(){
+        cout << "=====================================\n";
+        cout << "      HOUSING DATA MANAGEMENT SYSTEM \n";
+        cout << "=====================================\n";
+        cout << "1.  Input Block Data\n";
+        cout << "2.  Input House Data\n";
+        cout << "3.  View Block List\n";
+        cout << "4.  View House List\n";
+        cout << "5.  Delete Block Data\n";
+        cout << "6.  Delete House Data\n";
+        cout << "7.  Update Block Data\n";
+        cout << "8.  Update House Data\n";
+        cout << "9.  Search Block\n";
+        cout << "10. Search House\n";
+        cout << "11. Sort Blocks\n";
+        cout << "12. Sort Houses by Block\n";
+        cout << "13. Total Blocks\n";
+        cout << "14. Total Houses\n";
+        cout << "15. Exit\n";
+        cout << "=====================================\n";
+        cout << "Enter your choice: ";
+}
+
+void goodbyeThankYou(){
+    cout << "=====================================\n";
+    cout << "        PROGRAM TERMINATED\n";
+    cout << "=====================================\n";
+    cout << "Thank you for using this program.\n";
+    cout << "Have a nice day.\n";
+    cout << "=====================================\n";
+}
+
+

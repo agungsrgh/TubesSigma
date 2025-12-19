@@ -70,8 +70,8 @@ void updateDataBlok(adrBlok &p);
 void updateDataRumah(adrRumah &r);
 
 // Sorting Blok berdasarkan jumlah rumah
-void sortBlokByJumlahRumahAsc(listBlok &L, bool ascending);
-void sortBlokByJumlahRumahDesc(listBlok &L, bool descending);
+void sortBlokByJumlahRumahAsc(listBlok &L);
+void sortBlokByJumlahRumahDesc(listBlok &L);
 
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
 void sortRumahByLuasAsc(adrBlok blok);
@@ -84,5 +84,13 @@ void sortRumahByPenghuniDesc(adrBlok blok);
 // Statistik
 int totalBlok(listBlok L);
 int totalRumah(listBlok L);
+
+//UI
+void tampilkanList();
+void goodbyeThankYou();
+
+// main
+void mainProgram()
+
 
 #endif // SIGMA_H_INCLUDED
