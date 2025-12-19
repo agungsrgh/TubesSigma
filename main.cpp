@@ -161,10 +161,19 @@ int main(){
                 cout << "1. Luas Asc\n2. Luas Desc\n3. Penghuni Asc\n4. Penghuni Desc\nPilih: ";
                 cin >> s;
 
-                if(s == 1) sortRumahByLuasAsc(p);
-                else if(s == 2) sortRumahByLuasDesc(p);
-                else if(s == 3) sortRumahByPenghuniAsc(p);
-                else if(s == 4) sortRumahByPenghuniDesc(p);
+                if(s == 1){
+                    sortRumahByLuasAsc(p);
+                    displayRumahDalamBlok(p);
+                }else if(s == 2){
+                    sortRumahByLuasDesc(p);
+                    displayRumahDalamBlok(p);
+                }else if(s == 3){
+                    sortRumahByPenghuniAsc(p);
+                    displayRumahDalamBlok(p);
+                }else if(s == 4){
+                    sortRumahByPenghuniDesc(p);
+                    displayRumahDalamBlok(p);
+                }
             }
 
         }else if(pilih == 13){

@@ -58,7 +58,7 @@ adrRumah cariRumah(adrBlok p, string nomor);
 
 // untuk menampilkan Detail Blok atau Rumah
 void displaySemuaBlok(listBlok L);
-void displayRumahDalamBlok(adrBlok p, string nama);
+void displayRumahDalamBlok(adrBlok p);
 void displayDetailBlok(listBlok L, string nama);
 
 // Untuk hapus Blok dan Rumah

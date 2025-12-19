@@ -54,7 +54,7 @@ void tambahRumah(adrBlok &p, adrRumah q){
     }else{
         adrRumah temp = p->firstRumah;
         while(temp->next != nullptr){
-            temp = temp->next; 
+            temp = temp->next;
         }
         temp->next = q;
         q->prev = temp;
@@ -96,40 +96,41 @@ void displaySemuaBlok(listBlok L){
     }
 }
 
-void displayRumahDalamBlok(adrBlok p, string nama){
-    adrBlok p = cariBlok(L,nama);
-    if (p == nullptr){
-        cout << "Block tidak ditemukan ! " << endl ;
+void displayRumahDalamBlok(adrBlok p){
+    if(p == nullptr){
+        cout << "Blok tidak ditemukan!\n";
         return;
-        
     }
 
     adrRumah q = p->firstRumah;
     if(q == nullptr){
-        cout << " Rumah tidak ditemukan diBlok ini" << endl;
-        return ;
+        cout << "Belum ada rumah di blok ini\n";
+        return;
     }
-     while(q != nullptr){
-            cout << "-" << q->info.nomorRumah;
-            cout << "| Pemilik : " << q->info.namaPemilik;
-            cout << "| Status : " << q->info.statusKepemilikan;
-            cout << "| Luas : " << q->info.luasTanah << "m2" << endl;
-            q = q->next;
-        }
-        cout << endl;
+
+    while(q != nullptr){
+        cout << "- " << q->info.nomorRumah
+             << " | Pemilik: " << q->info.namaPemilik
+             << " | Status: " << q->info.statusKepemilikan
+             << " | Luas: " << q->info.luasTanah
+             << " | Penghuni: " << q->info.jumlahPenghuni
+             << endl;
+        q = q->next;
+    }
 }
-    
+
+
 void displayDetailBlok(listBlok L, string nama){
     adrBlok p = cariBlok(L, nama);
     if(p == nullptr){
         cout << "Blok Tidak Ditemukan!" << endl;
-        return; 
+        return;
     }
 
     cout << "=== DETAIL " << p->info.namaBlok << "===" << endl;
     cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
     cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
-    displayRumahDalamBlok(p, nama);
+    displayRumahDalamBlok(p);
 }
 
 // Untuk hapus Blok dan Rumah
@@ -145,31 +146,31 @@ void hapusBlok(listBlok &L, string nama){
     if(L.first == p && L.last == p){
         L.first = L.last = nullptr;
     }
-   
+
     else if(p == L.first){
         L.first = p->next;
         L.first->prev = nullptr;
     }
-    
+
     else if(p == L.last){
         L.last = p->prev;
         L.last->next = nullptr;
     }
-    
+
     else{
         p->prev->next = p->next;
         p->next->prev = p->prev;
     }
     p->prev = nullptr;
     p->next = nullptr;
-   
+
     delete p;
 
     cout << "Blok berhasil dihapus.\n";
 }
 
 void hapusRumah(adrBlok &p, string nomor){
-  adrRumah r  = cariRumah(p, nomor);  
+  adrRumah r  = cariRumah(p, nomor);
 
   if (r == nullptr){
     cout << " Rumah tidak ditemukan !";
@@ -191,10 +192,10 @@ void hapusRumah(adrBlok &p, string nomor){
   }
   r->next = nullptr;
   r->prev = nullptr;
-  
+
   p->info.jumlahRumah--;
   delete r;
-  
+
   cout << "Rumah berhasil dihapus.\n";
 }
 
@@ -215,7 +216,7 @@ void updateDataRumah(adrRumah &r){
     cout << "4. Ubah Jumlah Penghuni" << endl;
     cout << "5. Batal" << endl;
     cin >> pilih;
-   
+
     if(pilih == 1){
         cout << "Nama Pemilik Baru : ";
         cin >> r->info.namaPemilik;
@@ -231,8 +232,8 @@ void updateDataRumah(adrRumah &r){
     }else{
         cout << "Update Dibatalkan" << endl;
 
-        
-    }    
+
+    }
 }
 
 // Sorting Blok berdasarkan jumlah rumah
@@ -247,16 +248,16 @@ void sortBlokByJumlahRumahAsc(listBlok &L){
         adrBlok q = p->next;
         while (q != nullptr) {
             if (q->info.jumlahRumah < target->info.jumlahRumah){
-                target = q; 
-            } 
+                target = q;
+            }
             q = q->next;
         }
         if (target != p) {
-            
+
             infoBlok tmpInfo = p->info;
             p->info = target->info;
             target->info = tmpInfo;
-           
+
             adrRumah tmpFirst = p->firstRumah;
             p->firstRumah = target->firstRumah;
             target->firstRumah = tmpFirst;
@@ -270,7 +271,7 @@ void sortBlokByJumlahRumahDesc(listBlok &L){
         cout << "Block kosong !" << endl;
         return;
     }
-    
+
     adrBlok p = L.first;
     while (p != nullptr) {
         adrBlok target = p;
@@ -280,18 +281,18 @@ void sortBlokByJumlahRumahDesc(listBlok &L){
             q = q->next;
         }
         if (target != p) {
-            
+
             infoBlok tmpInfo = p->info;
             p->info = target->info;
             target->info = tmpInfo;
-            
+
             adrRumah tmpFirst = p->firstRumah;
             p->firstRumah = target->firstRumah;
             target->firstRumah = tmpFirst;
         }
         p = p->next;
     }
-    
+
 }
 
 // Sorting Rumah per blok berdasarkan luas tanah atau jumlah penghuni
@@ -320,7 +321,7 @@ void sortRumahByLuasDesc(adrBlok blok){
     if (blok == nullptr || blok->firstRumah == nullptr){
         cout << "Blok atau Rumah kosong !" << endl;
         return;
-    } 
+    }
     adrRumah p = blok->firstRumah;
     while (p != nullptr) {
         adrRumah target = p;
@@ -375,7 +376,7 @@ void sortRumahByPenghuniDesc(adrBlok blok){
         target->info = temp;
 
         i = i->next;
-    }    
+    }
 }
 
 // Statistik
