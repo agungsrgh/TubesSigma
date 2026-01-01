@@ -43,6 +43,9 @@ struct listBlok{
 
 // utility untuk Insert Blok dan Rumah
 void createListBlok(listBlok &L);
+
+// inisialisasi data dummy untuk testing
+void initDataDummy(listBlok &L);
 adrBlok createElementBlok(string nama, string tipe);
 adrRumah createElementRumah(string nomor, string pemilik, string status, int luas, int penghuni);
 bool isEmptyBlok(listBlok L);
@@ -58,7 +61,7 @@ adrRumah cariRumah(adrBlok p, string nomor);
 
 // untuk menampilkan Detail Blok atau Rumah
 void displaySemuaBlok(listBlok L);
-void displayRumahDalamBlok(adrBlok p, string nama);
+void displayRumahDalamBlok(adrBlok p);
 void displayDetailBlok(listBlok L, string nama);
 
 // Untuk hapus Blok dan Rumah

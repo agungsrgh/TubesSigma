@@ -5,7 +5,7 @@ using namespace std;
 int main(){
     listBlok L;
     createListBlok(L);
-
+    initDataDummy(L);
     int pilih;
     do{
         tampilkanList();
@@ -163,11 +163,17 @@ int main(){
 
                 if(s == 1){
                     sortRumahByLuasAsc(p);
-
-                } 
-                else if(s == 2) sortRumahByLuasDesc(p);
-                else if(s == 3) sortRumahByPenghuniAsc(p);
-                else if(s == 4) sortRumahByPenghuniDesc(p);
+                    displayRumahDalamBlok(p);
+                }else if(s == 2){
+                    sortRumahByLuasDesc(p);
+                    displayRumahDalamBlok(p);
+                }else if(s == 3){
+                    sortRumahByPenghuniAsc(p);
+                    displayRumahDalamBlok(p);
+                }else if(s == 4){
+                    sortRumahByPenghuniDesc(p);
+                    displayRumahDalamBlok(p);
+                }
             }
 
         }else if(pilih == 13){
