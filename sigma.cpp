@@ -49,6 +49,10 @@ void tambahBlok(listBlok &L, adrBlok p){
 }
 
 void tambahRumah(adrBlok &p, adrRumah q){
+    if(p == nullptr){
+        cout << "Error: blok null, tidak bisa menambah rumah" << endl;
+        return;
+    }
     if(isEmptyRumah(p)){
         p->firstRumah = q;
     }else{
@@ -74,6 +78,9 @@ adrBlok cariBlok(listBlok L, string namaBlok){
 }
 
 adrRumah cariRumah(adrBlok p, string nomor){
+    if(p == nullptr) {
+        return nullptr;
+    }
     adrRumah q = p->firstRumah;
     while(q != nullptr){
         if(q->info.nomorRumah == nomor){
@@ -85,7 +92,7 @@ adrRumah cariRumah(adrBlok p, string nomor){
 }
 
 
-// Untuk menampilkan Blok dan Rumah
+
 void displaySemuaBlok(listBlok L){
     adrBlok p = L.first;
     while(p != nullptr){
@@ -133,6 +140,21 @@ void displayDetailBlok(listBlok L, string nama){
     displayRumahDalamBlok(p);
 }
 
+void displaySemuaBlokDanRumah(listBlok L){
+    adrBlok p = L.first;
+    if(p == nullptr){
+        cout << "Tidak ada data blok!\n";
+        return;
+    }
+    while(p != nullptr){
+        cout << "====" << p->info.namaBlok << "====" << endl;
+        cout << "Tipe Rumah : " << p->info.jenisTipeRumah << endl;
+        cout << "Jumlah Rumah : " << p->info.jumlahRumah << endl;
+        displayRumahDalamBlok(p);
+        p = p->next;
+    }
+}
+
 // Untuk hapus Blok dan Rumah
 void hapusBlok(listBlok &L, string nama){
 
@@ -170,13 +192,18 @@ void hapusBlok(listBlok &L, string nama){
 }
 
 void hapusRumah(adrBlok &p, string nomor){
-  adrRumah r  = cariRumah(p, nomor);
+    if(p == nullptr){
+        cout << "Blok tidak ditemukan!" << endl;
+        return;
+    }
 
-  if (r == nullptr){
-    cout << " Rumah tidak ditemukan !";
-    return;
+    adrRumah r  = cariRumah(p, nomor);
 
-  }
+    if (r == nullptr){
+        cout << "Rumah tidak ditemukan!" << endl;
+        return;
+
+    }
 
   if ( r == p->firstRumah){
     p->firstRumah = r->next;
@@ -306,7 +333,9 @@ void sortRumahByLuasAsc(adrBlok blok){
         adrRumah target = p;
         adrRumah q = p->next;
         while (q != nullptr) {
-            if (q->info.luasTanah < target->info.luasTanah) target = q;
+            if (q->info.luasTanah < target->info.luasTanah) {
+                target = q;
+            }
             q = q->next;
         }
         if (target != p) {
@@ -408,17 +437,17 @@ void initDataDummy(listBlok &L){
     // --- Blok AA ---
     b = createElementBlok("AA","Campuran");
     tambahBlok(L, b);
-    r = createElementRumah("AA1","Budi","Lunas",120,4); 
+    r = createElementRumah("AA1","Budi","Lunas",120,4);
     tambahRumah(b, r);
-    r = createElementRumah("AA2","Siti","KPR",90,3); 
+    r = createElementRumah("AA2","Siti","KPR",90,3);
     tambahRumah(b, r);
 
     // --- Blok BB ---
     b = createElementBlok("BB","Serasi");
     tambahBlok(L, b);
-    r = createElementRumah("BB1","Andi","Lunas",100,2); 
+    r = createElementRumah("BB1","Andi","Lunas",100,2);
     tambahRumah(b, r);
-    r = createElementRumah("BB2","Rina","KPR",85,3); 
+    r = createElementRumah("BB2","Rina","KPR",85,3);
     tambahRumah(b, r);
 
     // --- Blok BC ---
@@ -436,17 +465,18 @@ void tampilkanList(){
         cout << "2.  Input Data Rumah\n";
         cout << "3.  Lihat List Blok\n";
         cout << "4.  Lihat List Rumah\n";
-        cout << "5.  Delete Data Blok\n";
-        cout << "6.  Delete Data Rumah\n";
-        cout << "7.  Update Data Blok\n";
-        cout << "8.  Update Data Rumah\n";
-        cout << "9.  Search Blok\n";
-        cout << "10. Search Rumah\n";
-        cout << "11. Sort Blok\n";
-        cout << "12. Sort Rumah by Blok\n";
-        cout << "13. Total Blok\n";
-        cout << "14. Total Rumah\n";
-        cout << "15. Exit\n";
+        cout << "5.  Lihat List Blok dan Rumah\n";
+        cout << "6.  Delete Data Blok\n";
+        cout << "7.  Delete Data Rumah\n";
+        cout << "8.  Update Data Blok\n";
+        cout << "9.  Update Data Rumah\n";
+        cout << "10. Search Blok\n";
+        cout << "11. Search Rumah\n";
+        cout << "12. Sort Blok by Jumlah Rumah\n";
+        cout << "13. Sort Rumah by Pilihan\n";
+        cout << "14. Total Blok\n";
+        cout << "15. Total Rumah\n";
+        cout << "16. Exit\n";
         cout << "=====================================\n";
         cout << "Masukkan Pilihan : ";
 }
@@ -459,5 +489,7 @@ void goodbyeThankYou(){
     cout << "Have a nice day.\n";
     cout << "=====================================\n";
 }
+
+
 
 

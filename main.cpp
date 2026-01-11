@@ -39,18 +39,23 @@ int main(){
             }else{
                 cout << "Nomor Rumah: ";
                 cin >> nomor;
-                cout << "Nama Pemilik: ";
-                cin >> pemilik;
-                cout << "Status (Lunas/KPR): ";
-                cin >> status;
-                cout << "Luas Tanah: ";
-                cin >> luas;
-                cout << "Jumlah Penghuni: ";
-                cin >> penghuni;
 
-                adrRumah r = createElementRumah(nomor, pemilik, status, luas, penghuni);
-                tambahRumah(p, r);
-                cout << "Rumah berhasil ditambahkan.\n";
+                if(cariRumah(p, nomor) != nullptr){
+                    cout << "Nomor rumah sudah ada di blok ini!\n";
+                }else{
+                    cout << "Nama Pemilik: ";
+                    cin >> pemilik;
+                    cout << "Status (Lunas/KPR): ";
+                    cin >> status;
+                    cout << "Luas Tanah: ";
+                    cin >> luas;
+                    cout << "Jumlah Penghuni: ";
+                    cin >> penghuni;
+
+                    adrRumah r = createElementRumah(nomor, pemilik, status, luas, penghuni);
+                    tambahRumah(p, r);
+                    cout << "Rumah berhasil ditambahkan.\n";
+                }
             }
 
         }else if(pilih == 3){
@@ -63,13 +68,16 @@ int main(){
             adrBlok p = cariBlok(L, nama);
             displayRumahDalamBlok(p);
 
-        }else if(pilih == 5){
+        }else if (pilih == 5){
+            displaySemuaBlokDanRumah(L);
+
+        }else if(pilih == 6){
             string nama;
             cout << "Nama Blok: ";
             cin >> nama;
             hapusBlok(L, nama);
 
-        }else if(pilih == 6){
+        }else if(pilih == 7){
             string namaBlok, nomor;
             cout << "Nama Blok: ";
             cin >> namaBlok;
@@ -83,7 +91,7 @@ int main(){
                 hapusRumah(p, nomor);
             }
 
-        }else if(pilih == 7){
+        }else if(pilih == 8){
             string nama;
             cout << "Nama Blok: ";
             cin >> nama;
@@ -94,7 +102,7 @@ int main(){
                 updateDataBlok(p);
             }
 
-        }else if(pilih == 8){
+        }else if(pilih == 9){
             string namaBlok, nomor;
             cout << "Nama Blok: ";
             cin >> namaBlok;
@@ -113,13 +121,13 @@ int main(){
                 }
             }
 
-        }else if(pilih == 9){
+        }else if(pilih == 10){
             string nama;
             cout << "Nama Blok: ";
             cin >> nama;
             displayDetailBlok(L, nama);
 
-        }else if(pilih == 10){
+        }else if(pilih == 11){
             string namaBlok, nomor;
             cout << "Nama Blok: ";
             cin >> namaBlok;
@@ -141,14 +149,19 @@ int main(){
                 }
             }
 
-        }else if(pilih == 11){
+        }else if(pilih == 12){
             int s;
             cout << "1. Ascending\n2. Descending\nPilih: ";
             cin >> s;
-            if(s == 1) sortBlokByJumlahRumahAsc(L);
-            else sortBlokByJumlahRumahDesc(L);
+            if(s == 1) {
+                sortBlokByJumlahRumahAsc(L);
+                displaySemuaBlok(L);
+            } else {
+                sortBlokByJumlahRumahDesc(L);
+                displaySemuaBlok(L);
+            }
 
-        }else if(pilih == 12){
+        }else if(pilih == 13){
             string nama;
             int s;
             cout << "Nama Blok: ";
@@ -176,15 +189,15 @@ int main(){
                 }
             }
 
-        }else if(pilih == 13){
+        }else if(pilih == 14){
             cout << "Total Blok: " << totalBlok(L) << endl;
 
-        }else if(pilih == 14){
+        }else if(pilih == 15){
             cout << "Total Rumah: " << totalRumah(L) << endl;
 
         }
 
-    }while(pilih != 15);
+    }while(pilih != 16);
 
     goodbyeThankYou();
     return 0;

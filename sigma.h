@@ -46,6 +46,7 @@ void createListBlok(listBlok &L);
 
 // inisialisasi data dummy untuk testing
 void initDataDummy(listBlok &L);
+
 adrBlok createElementBlok(string nama, string tipe);
 adrRumah createElementRumah(string nomor, string pemilik, string status, int luas, int penghuni);
 bool isEmptyBlok(listBlok L);
@@ -55,7 +56,7 @@ bool isEmptyRumah(adrBlok p);
 void tambahBlok(listBlok &L, adrBlok p);
 void tambahRumah(adrBlok &p, adrRumah q);
 
-// utility untuk Delete Rumah atau Block
+// utility untuk cari Rumah atau Block
 adrBlok cariBlok(listBlok L, string namaBlok);
 adrRumah cariRumah(adrBlok p, string nomor);
 
@@ -63,6 +64,8 @@ adrRumah cariRumah(adrBlok p, string nomor);
 void displaySemuaBlok(listBlok L);
 void displayRumahDalamBlok(adrBlok p);
 void displayDetailBlok(listBlok L, string nama);
+void displaySemuaBlokDanRumah(listBlok L);
+
 
 // Untuk hapus Blok dan Rumah
 void hapusBlok(listBlok &L, string nama);
